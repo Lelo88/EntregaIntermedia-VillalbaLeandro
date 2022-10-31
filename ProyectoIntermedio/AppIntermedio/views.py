@@ -1,3 +1,4 @@
+from webbrowser import get
 from django.shortcuts import render, redirect
 from .models import Sector, Lector, Libro
 from django.http import HttpResponse
@@ -94,3 +95,7 @@ def muestra_lectores(request):
     lectores = Lector.objects.all()
     
     return render(request, 'muestra_lectores.html', {'listado_lectores': lectores})
+
+def multiple_form(request):
+    
+    return render(request, 'formularioGeneral.html')
