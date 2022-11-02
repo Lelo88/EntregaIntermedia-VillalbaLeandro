@@ -112,10 +112,15 @@ def buscar_lectores(request):
     if request.GET['num_socio']:
     
         lector_buscado = request.GET['num_socio']
-        lectores = Lector.objects.filter(num_socio__icontains= lector_buscado)
-        return render(request, 'resultBusqLector.html', {'nombre_lector': lectores, 'num_socio': lector_buscado})
+        lectores = Lector.objects.get(num_socio = lector_buscado)
+        lectores.save()
+        return render(request, 'resultBusqLector.html', {'nombre_lector': lectores.nombre, 'apellido_lector': lectores.apellido, 'num_socio': lector_buscado})
     
     else:
         
         respuesta = "No enviaste datos"
         return render(request, 'resultBusqLector.html', {'respuesta': respuesta})
+
+def busqueda_libros(request):
+    return render(request, 'busquedaLibros.html')
+

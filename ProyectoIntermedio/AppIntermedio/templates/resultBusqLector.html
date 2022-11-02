@@ -11,8 +11,8 @@
                 <h2 class="text-white mt-0">Resultado de lectores</h2>
                 <hr class="divider divider-light" />
                 {% if nombre_lector%}
-                    <p>Los lectores con el apellido {{num_socio}}</p>                
-                    <h4>{{nombre_lector}} - {{num_socio}}</h4>
+                    <p>Datos del socio {{num_socio}}</p>                
+                    <h4>{{nombre_lector}} {{apellido_lector}} - {{num_socio}}</h4>
                     
                 {% else %}
                     <p>No se encuentra ningun lector con ese apellido</p>
