@@ -1,0 +1,27 @@
+{% extends 'padre.html' %}
+
+
+{% block Biblioteca %}
+<section class="page-section bg-primary" id="Inicio">
+    
+    <div class="container px-4 px-lg-5">
+        
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="text-white mt-0">Resultado de lectores</h2>
+                <hr class="divider divider-light" />
+                {% if nombre_lector%}
+                    <p>Los lectores con el apellido {{num_socio}}</p>                
+                    <h4>{{nombre_lector}} - {{num_socio}}</h4>
+                    
+                {% else %}
+                    <p>No se encuentra ningun lector con ese apellido</p>
+                {% endif %}
+                    <p>{{respuesta}}</p>
+                    
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock Biblioteca %}
+    

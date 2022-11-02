@@ -34,7 +34,7 @@ def form_libros(request):
         
         if libros.is_valid():
             info_libros = libros.cleaned_data
-            libro = Libro(titulo=info_libros['titulo'], sinopsis=info_libros['sinopsis'], autor=info_libros['autor'])
+            libro = Libro(titulo=info_libros['titulo'], sinopsis=info_libros['sinopsis'], autor=info_libros['autor'], codigo_libro=info_libros['codigo_libro'])
             libro.save()
             
             return redirect('ListadoLibros')
@@ -51,7 +51,7 @@ def form_sectores(request):
         
         if sectores.is_valid():
             info_sectores = sectores.cleaned_data
-            sector = Sector(color=info_sectores['color'], nombre=info_sectores['nombre'], cupo=info_sectores['cupo'])
+            sector = Sector(color=info_sectores['color'], nombre=info_sectores['nombre'], cupo=info_sectores['cupo'], num_sector=info_sectores['num_sector'])
             sector. save()
             
             return redirect('ListadoSectores')
@@ -68,7 +68,7 @@ def form_lectores(request):
         
         if lectores.is_valid():
             info_lectores = lectores.cleaned_data
-            lector = Lector(nombre=info_lectores['nombre'], apellido=info_lectores['apellido'], fecha_nac=info_lectores['fecha_nac'])
+            lector = Lector(nombre=info_lectores['nombre'], apellido=info_lectores['apellido'], fecha_nac=info_lectores['fecha_nac'], num_socio=info_lectores['num_socio'])
             lector.save()
             
             return redirect('ListadoLectores')
@@ -99,3 +99,23 @@ def muestra_lectores(request):
 def multiple_form(request):
     
     return render(request, 'formularioGeneral.html')
+
+def busqueda_inicial(request):
+    
+    return render(request, 'busquedaInicial.html')
+
+def busqueda_lectores(request):
+    return render(request, 'busquedaLectores.html')
+
+def buscar_lectores(request):
+    
+    if request.GET['num_socio']:
+    
+        lector_buscado = request.GET['num_socio']
+        lectores = Lector.objects.filter(num_socio__icontains= lector_buscado)
+        return render(request, 'resultBusqLector.html', {'nombre_lector': lectores, 'num_socio': lector_buscado})
+    
+    else:
+        
+        respuesta = "No enviaste datos"
+        return render(request, 'resultBusqLector.html', {'respuesta': respuesta})

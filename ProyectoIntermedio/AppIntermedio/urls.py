@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import form_lectores, form_libros, form_sectores, inicio, lectores, libros, muestra_lectores, muestra_libros, muestra_sectores, multiple_form, sectores
+from .views import buscar_lectores, busqueda_inicial, busqueda_lectores, form_lectores, form_libros, form_sectores, inicio, lectores, libros, muestra_lectores, muestra_libros, muestra_sectores, multiple_form, sectores
 
 urlpatterns = [
     path('', inicio, name='Inicio'),
@@ -13,5 +13,8 @@ urlpatterns = [
     path('vista-libros/', libros, name='ListadoLibros'),
     path('vista-sectores/', sectores, name='ListadoSectores'),
     path('vista-lectores/', lectores, name='ListadoLectores'),
-    path('formulario-inicial/', multiple_form, name='FormularioInicial' )
+    path('formulario-inicial/', multiple_form, name='FormularioInicial' ),
+    path('busqueda-inicial/', busqueda_inicial, name='BusquedaInicial'),
+    path('busqueda-lectores/', busqueda_lectores, name='BusquedaLectores'),
+    path('buscar-lectores/', buscar_lectores, name='BuscarLectores')
 ]
